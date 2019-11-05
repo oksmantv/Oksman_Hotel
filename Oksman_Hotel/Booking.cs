@@ -41,7 +41,6 @@ namespace Oksman_Hotel
             {
                 db.Bookings.Add(B);
                 db.SaveChanges();
-
             }
 
         }

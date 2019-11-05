@@ -23,25 +23,54 @@ namespace Oksman_Hotel
             Add.Show();
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+
+
+        private void Hotel_California_Load(object sender, EventArgs e)
         {
-    
+
+        }
+
+        private void AddCustomer_Click(object sender, EventArgs e)
+        {
+            var Add = new AddCustomer();
+            Add.Show();
+        }
+
+        private void BookRoom_Button_Click(object sender, EventArgs e)
+        {
+            if (CustomerBox.SelectedValue == null) return;
+            var Book = new BookRoom(int.Parse(CustomerBox.SelectedValue.ToString()));
+            Book.Show();
+
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
             var Data = new SearchCustomer();
 
             CustomerBox.DisplayMember = "FullName";
             CustomerBox.ValueMember = "CustomerID";
             CustomerBox.DataSource = Data.FindCustomer(CustomerText.Text);
+        }
+
+        private void CustomerBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var Data = new GetData();
+            var Search = new SearchCustomer();
+            Customer C = Search.FindACustomer(int.Parse(CustomerBox.SelectedValue.ToString()));
+
+            BookingBox.DisplayMember = "BookingID";
+            BookingBox.ValueMember = "BookingID";
+            BookingBox.DataSource = Data.GetBookings(C);
+
+
+
 
         }
 
-        private void Button1_Click_1(object sender, EventArgs e)
+        private void DeleteBookingButton_Click(object sender, EventArgs e)
         {
-            if (CustomerBox.SelectedValue == null) return;
-            CustomerBox.DisplayMember = "FirstName";
-            CustomerBox.ValueMember = "CustomerID";
 
-            var Book = new BookRoom(int.Parse(CustomerBox.SelectedValue.ToString()));
-            Book.Show();
         }
     }
 }

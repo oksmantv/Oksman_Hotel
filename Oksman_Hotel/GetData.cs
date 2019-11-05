@@ -14,7 +14,18 @@ namespace Oksman_Hotel
 
 
         }
+        public Room GetRoom(int _ID)
+        {
+            var R = new Room();
+            using (var db = new HotelCaliforniaEntities())
+            {
+                R = (from r in db.Rooms where r.RoomID == _ID select r).FirstOrDefault();
 
+            }
+
+            return R;
+
+        }
         public List<Room> GetRooms ()
         {
             var Lista = new List<Room>();
@@ -64,7 +75,26 @@ namespace Oksman_Hotel
 
             return Lista;
         }
+        public List<Booking> GetBookings(Customer C)
+        {
+            var Lista = new List<Booking>();
 
+            using (HotelCaliforniaEntities db = new HotelCaliforniaEntities())
+            {
+
+                Lista = (from b in db.Bookings
+                         join c in db.Customers
+                 on b.CustomerID equals c.CustomerID
+                 where b.CustomerID == C.CustomerID
+                 select b).ToList();
+
+                //Lista = (from b in db.Bookings
+                //         where b.CustomerID == C.CustomerID
+                //         select b).ToList();
+            }
+            //Include("Customers")
+            return Lista;
+        }
 
 
     }

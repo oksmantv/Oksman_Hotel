@@ -36,6 +36,12 @@
             this.DateTime2 = new System.Windows.Forms.DateTimePicker();
             this.DateTime1 = new System.Windows.Forms.DateTimePicker();
             this.NameLabel = new System.Windows.Forms.Label();
+            this.GuestsBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.RoomType = new System.Windows.Forms.Label();
+            this.RoomSize = new System.Windows.Forms.Label();
+            this.ExtraBedBox = new System.Windows.Forms.CheckBox();
+            this.RoomPrice = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CancelBookingButton
@@ -81,10 +87,11 @@
             // 
             this.RoomBox.FormattingEnabled = true;
             this.RoomBox.ItemHeight = 16;
-            this.RoomBox.Location = new System.Drawing.Point(20, 70);
+            this.RoomBox.Location = new System.Drawing.Point(13, 61);
             this.RoomBox.Name = "RoomBox";
-            this.RoomBox.Size = new System.Drawing.Size(264, 228);
+            this.RoomBox.Size = new System.Drawing.Size(254, 68);
             this.RoomBox.TabIndex = 15;
+            this.RoomBox.SelectedIndexChanged += new System.EventHandler(this.RoomBox_SelectedIndexChanged);
             // 
             // DateTime2
             // 
@@ -112,11 +119,71 @@
             this.NameLabel.TabIndex = 20;
             this.NameLabel.Text = "Name: ";
             // 
+            // GuestsBox
+            // 
+            this.GuestsBox.FormattingEnabled = true;
+            this.GuestsBox.Location = new System.Drawing.Point(13, 256);
+            this.GuestsBox.Name = "GuestsBox";
+            this.GuestsBox.Size = new System.Drawing.Size(121, 24);
+            this.GuestsBox.TabIndex = 21;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 236);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(57, 17);
+            this.label1.TabIndex = 22;
+            this.label1.Text = "Guests:";
+            // 
+            // RoomType
+            // 
+            this.RoomType.AutoSize = true;
+            this.RoomType.Location = new System.Drawing.Point(12, 141);
+            this.RoomType.Name = "RoomType";
+            this.RoomType.Size = new System.Drawing.Size(85, 17);
+            this.RoomType.TabIndex = 25;
+            this.RoomType.Text = "Room Type:";
+            // 
+            // RoomSize
+            // 
+            this.RoomSize.AutoSize = true;
+            this.RoomSize.Location = new System.Drawing.Point(12, 162);
+            this.RoomSize.Name = "RoomSize";
+            this.RoomSize.Size = new System.Drawing.Size(80, 17);
+            this.RoomSize.TabIndex = 26;
+            this.RoomSize.Text = "Room Size:";
+            // 
+            // ExtraBedBox
+            // 
+            this.ExtraBedBox.AutoSize = true;
+            this.ExtraBedBox.Location = new System.Drawing.Point(13, 212);
+            this.ExtraBedBox.Name = "ExtraBedBox";
+            this.ExtraBedBox.Size = new System.Drawing.Size(120, 21);
+            this.ExtraBedBox.TabIndex = 27;
+            this.ExtraBedBox.Text = "Add Extra Bed";
+            this.ExtraBedBox.UseVisualStyleBackColor = true;
+            // 
+            // RoomPrice
+            // 
+            this.RoomPrice.AutoSize = true;
+            this.RoomPrice.Location = new System.Drawing.Point(12, 186);
+            this.RoomPrice.Name = "RoomPrice";
+            this.RoomPrice.Size = new System.Drawing.Size(44, 17);
+            this.RoomPrice.TabIndex = 26;
+            this.RoomPrice.Text = "Price:";
+            // 
             // BookRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 359);
+            this.Controls.Add(this.ExtraBedBox);
+            this.Controls.Add(this.RoomPrice);
+            this.Controls.Add(this.RoomSize);
+            this.Controls.Add(this.RoomType);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.GuestsBox);
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.CancelBookingButton);
             this.Controls.Add(this.BookRoomButton);
@@ -143,5 +210,11 @@
         private System.Windows.Forms.DateTimePicker DateTime2;
         private System.Windows.Forms.DateTimePicker DateTime1;
         private System.Windows.Forms.Label NameLabel;
+        private System.Windows.Forms.ComboBox GuestsBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label RoomType;
+        private System.Windows.Forms.Label RoomSize;
+        private System.Windows.Forms.CheckBox ExtraBedBox;
+        private System.Windows.Forms.Label RoomPrice;
     }
 }
