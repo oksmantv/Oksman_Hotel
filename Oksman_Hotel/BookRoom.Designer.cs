@@ -42,6 +42,7 @@
             this.RoomSize = new System.Windows.Forms.Label();
             this.ExtraBedBox = new System.Windows.Forms.CheckBox();
             this.RoomPrice = new System.Windows.Forms.Label();
+            this.NoRoomLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CancelBookingButton
@@ -126,6 +127,7 @@
             this.GuestsBox.Name = "GuestsBox";
             this.GuestsBox.Size = new System.Drawing.Size(121, 24);
             this.GuestsBox.TabIndex = 21;
+            this.GuestsBox.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GuestsBox_MouseClick);
             // 
             // label1
             // 
@@ -163,6 +165,7 @@
             this.ExtraBedBox.TabIndex = 27;
             this.ExtraBedBox.Text = "Add Extra Bed";
             this.ExtraBedBox.UseVisualStyleBackColor = true;
+            this.ExtraBedBox.CheckedChanged += new System.EventHandler(this.ExtraBedBox_CheckedChanged);
             // 
             // RoomPrice
             // 
@@ -173,11 +176,22 @@
             this.RoomPrice.TabIndex = 26;
             this.RoomPrice.Text = "Price:";
             // 
+            // NoRoomLabel
+            // 
+            this.NoRoomLabel.AutoSize = true;
+            this.NoRoomLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NoRoomLabel.ForeColor = System.Drawing.Color.Red;
+            this.NoRoomLabel.Location = new System.Drawing.Point(292, 61);
+            this.NoRoomLabel.Name = "NoRoomLabel";
+            this.NoRoomLabel.Size = new System.Drawing.Size(0, 20);
+            this.NoRoomLabel.TabIndex = 28;
+            // 
             // BookRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 359);
+            this.Controls.Add(this.NoRoomLabel);
             this.Controls.Add(this.ExtraBedBox);
             this.Controls.Add(this.RoomPrice);
             this.Controls.Add(this.RoomSize);
@@ -216,5 +230,6 @@
         private System.Windows.Forms.Label RoomSize;
         private System.Windows.Forms.CheckBox ExtraBedBox;
         private System.Windows.Forms.Label RoomPrice;
+        private System.Windows.Forms.Label NoRoomLabel;
     }
 }

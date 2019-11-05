@@ -26,6 +26,7 @@ namespace Oksman_Hotel
         public int CustomerID { get; set; }
         public System.DateTime DateStart { get; set; }
         public System.DateTime DateEnd { get; set; }
+        public Nullable<int> Guests { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
@@ -34,7 +35,7 @@ namespace Oksman_Hotel
         public virtual ICollection<Invoice> Invoices1 { get; set; }
         public virtual Room Room { get; set; }
 
-        public void BookARoom (Booking B)
+        public void BookARoom(Booking B)
         {
 
             using (var db = new HotelCaliforniaEntities())

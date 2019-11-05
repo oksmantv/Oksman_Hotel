@@ -24,8 +24,12 @@ namespace Oksman_Hotel
         public string RoomType { get; set; }
         public int Beds { get; set; }
         public int Price { get; set; }
+        public int Size { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
+
+
+
     }
 }

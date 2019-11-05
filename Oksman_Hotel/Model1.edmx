@@ -14,15 +14,17 @@
           <Property Name="CustomerID" Type="int" Nullable="false" />
           <Property Name="DateStart" Type="date" Nullable="false" />
           <Property Name="DateEnd" Type="date" Nullable="false" />
+          <Property Name="Guests" Type="int" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="PersonID" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="Invoices">
           <Key>
@@ -37,9 +39,10 @@
             <PropertyRef Name="RoomID" />
           </Key>
           <Property Name="RoomID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoomType" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="RoomType" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Beds" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
+          <Property Name="Size" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_BookingID">
           <End Role="Bookings" Type="Self.Bookings" Multiplicity="1" />
@@ -128,16 +131,18 @@
           <NavigationProperty Name="Customer" Relationship="Self.FK_Bookings" FromRole="Bookings" ToRole="Customers" />
           <NavigationProperty Name="Invoices1" Relationship="Self.FK_Invoices" FromRole="Bookings" ToRole="Invoices" />
           <NavigationProperty Name="Room" Relationship="Self.FK_RoomID" FromRole="Bookings" ToRole="Rooms" />
+          <Property Name="Guests" Type="Int32" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="CustomerID" />
           </Key>
           <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PersonID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings" FromRole="Customers" ToRole="Bookings" />
+          <Property Name="FullName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -154,10 +159,11 @@
             <PropertyRef Name="RoomID" />
           </Key>
           <Property Name="RoomID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoomType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="RoomType" Type="String" Nullable="false" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="Beds" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_RoomID" FromRole="Rooms" ToRole="Bookings" />
+          <Property Name="Size" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_BookingID">
           <End Role="Bookings" Type="Self.Booking" Multiplicity="1" />
@@ -238,6 +244,7 @@
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="HotelCaliforniaModel.Booking">
               <MappingFragment StoreEntitySet="Bookings">
+                <ScalarProperty Name="Guests" ColumnName="Guests" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
@@ -249,6 +256,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="HotelCaliforniaModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
@@ -268,6 +276,7 @@
           <EntitySetMapping Name="Rooms">
             <EntityTypeMapping TypeName="HotelCaliforniaModel.Room">
               <MappingFragment StoreEntitySet="Rooms">
+                <ScalarProperty Name="Size" ColumnName="Size" />
                 <ScalarProperty Name="RoomID" ColumnName="RoomID" />
                 <ScalarProperty Name="RoomType" ColumnName="RoomType" />
                 <ScalarProperty Name="Beds" ColumnName="Beds" />

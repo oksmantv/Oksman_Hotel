@@ -13,23 +13,42 @@ namespace Oksman_Hotel
     public partial class BookRoom : Form
     {
         public int _ID;
+        string RoomTypeOG;
+        string RoomPriceOG;
+        string RoomSizeOG;
+        int BedsCount;
         public BookRoom(int id)
         {
             _ID = id;
             InitializeComponent();
         }
 
+        public class Beds
+        {
+            public int Number { get; set; }
+        }
+
         private void CheckAvailableButton_Click(object sender, EventArgs e)
         {
-            var Room = new GetData();
+            var GetRoom = new GetData();
             RoomBox.DisplayMember = "RoomID";
             RoomBox.ValueMember = "RoomID";
-            RoomBox.DataSource = Room.GetRoomsAvailable(DateTime1.Value, DateTime2.Value);
+            List<Room> AvailableRooms = GetRoom.GetRoomsAvailable(DateTime1.Value, DateTime2.Value);
+
+            if (AvailableRooms.Count < 1)
+                NoRoomLabel.Text = "0 Rooms Available!";
+            else NoRoomLabel.Text = "";
+
+            RoomBox.DataSource = AvailableRooms;
+
 
         }
 
         private void BookRoom_Load(object sender, EventArgs e)
         {
+            RoomTypeOG = RoomType.Text;
+            RoomPriceOG = RoomPrice.Text;
+            RoomSizeOG = RoomSize.Text;
 
             var Customer = new SearchCustomer();
             var C = Customer.FindACustomer(_ID);
@@ -54,6 +73,7 @@ namespace Oksman_Hotel
             B.CustomerID = int.Parse(Objekt.CustomerID.ToString());
             B.DateStart = DateTime1.Value;
             B.DateEnd = DateTime2.Value;
+            B.Guests = int.Parse(GuestsBox.SelectedValue.ToString());
 
             B.BookARoom(B);
             this.Close();
@@ -62,16 +82,74 @@ namespace Oksman_Hotel
         private void RoomBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var Data = new GetData();
+            ExtraBedBox.Checked = false;
 
             var RoomInfo = Data.GetRoom(int.Parse(RoomBox.SelectedValue.ToString()));
 
             if (RoomInfo.RoomType == "1")
-                RoomType.Text += "Single";
+                RoomType.Text = RoomTypeOG + "Single";
             else if (RoomInfo.RoomType == "2")
-                RoomType.Text += "Double";
+                RoomType.Text = RoomTypeOG + "Double";
 
-            RoomPrice.Text += RoomInfo.Price;
-            RoomSize.Text += RoomInfo.
+            RoomPrice.Text = RoomPriceOG + RoomInfo.Price;
+            RoomSize.Text = RoomSizeOG + RoomInfo.Size;
+
+            if (RoomInfo.Size < 35) ExtraBedBox.Enabled = false;
+            else ExtraBedBox.Enabled = true;
+            BedsCount = RoomInfo.Beds;
+            List<Beds> BedList = new List<Beds>();
+            BedList = Data.GetBeds(RoomInfo.Beds);
+
+            //if (ExtraBedBox.Checked == true)
+            //{
+            //    var GetBeds = new Room();
+            //    BedList = GetBeds.GetBeds(BedsCount + 1);
+
+            //    GuestsBox.DisplayMember = "Number";
+            //    GuestsBox.ValueMember = "Number";
+            //    GuestsBox.DataSource = BedList;
+            //}
+            //else
+            //{
+            //    var GetBeds = new Room();
+            //    BedList = GetBeds.GetBeds(RoomInfo.Beds);
+            //}
+
+            GuestsBox.DisplayMember = "Number";
+            GuestsBox.ValueMember = "Number";
+            GuestsBox.DataSource = BedList;
+
+        }
+
+        private void GuestsBox_MouseClick(object sender, MouseEventArgs e)
+        {
+
+
+        }
+
+        private void ExtraBedBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (ExtraBedBox.Checked == true)
+            {
+                var GetBeds = new GetData();
+                List<Beds> BedList = GetBeds.GetBeds(BedsCount + 1);
+
+                GuestsBox.DisplayMember = "Number";
+                GuestsBox.ValueMember = "Number";
+                GuestsBox.DataSource = BedList;
+            }
+            else
+            {
+                var GetBeds = new GetData();
+                List<Beds> BedList = GetBeds.GetBeds(BedsCount);
+
+                GuestsBox.DisplayMember = "Number";
+                GuestsBox.ValueMember = "Number";
+                GuestsBox.DataSource = BedList;
+
+            }
+
         }
     }
 }

@@ -8,11 +8,8 @@ namespace Oksman_Hotel
 {
     class GetData
     {
-
         public GetData()
-        {
-
-
+        { 
         }
         public Room GetRoom(int _ID)
         {
@@ -20,11 +17,25 @@ namespace Oksman_Hotel
             using (var db = new HotelCaliforniaEntities())
             {
                 R = (from r in db.Rooms where r.RoomID == _ID select r).FirstOrDefault();
+            }
+            return R;
+        }
+
+        public List<BookRoom.Beds> GetBeds(int number)
+        {
+
+            List<BookRoom.Beds> BedList = new List<BookRoom.Beds>();
+
+
+            for (int i = 1; i < number + 1; i++)
+            {
+                var Bed = new BookRoom.Beds();
+                Bed.Number = i;
+                BedList.Add(Bed);
 
             }
 
-            return R;
-
+            return BedList;
         }
         public List<Room> GetRooms ()
         {
@@ -61,16 +72,8 @@ namespace Oksman_Hotel
                         IntList.Add(Book.RoomID);
                     }
 
-
                 }
-
                 Lista = db.Rooms.Where(x => !IntList.Contains(x.RoomID)).ToList();
-
-                //Lista = 
-                //(from B in db.Bookings
-                //where !(StartDate >= B.DateStart && EndDate <= B.DateEnd) && !(B.DateEnd >= StartDate && B.DateStart <= EndDate)
-                // select B).ToList();
-
             }
 
             return Lista;
@@ -88,11 +91,7 @@ namespace Oksman_Hotel
                  where b.CustomerID == C.CustomerID
                  select b).ToList();
 
-                //Lista = (from b in db.Bookings
-                //         where b.CustomerID == C.CustomerID
-                //         select b).ToList();
             }
-            //Include("Customers")
             return Lista;
         }
 
