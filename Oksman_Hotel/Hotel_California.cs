@@ -63,14 +63,17 @@ namespace Oksman_Hotel
             BookingBox.ValueMember = "BookingID";
             BookingBox.DataSource = Data.GetBookings(C);
 
+        }
 
-
+        private void PayBookingButton_Click(object sender, EventArgs e)
+        {
 
         }
 
-        private void DeleteBookingButton_Click(object sender, EventArgs e)
+        private void ChangeBookingButton_Click(object sender, EventArgs e)
         {
-
+            var Book = new ChangeBooking((int.Parse(BookingBox.SelectedValue.ToString())), (int.Parse(CustomerBox.SelectedValue.ToString())));
+            Book.Show();
         }
     }
 }

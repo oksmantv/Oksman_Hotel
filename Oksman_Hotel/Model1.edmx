@@ -33,6 +33,7 @@
           <Property Name="InvoiceID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BookingID" Type="int" Nullable="false" />
           <Property Name="Complete" Type="int" Nullable="false" />
+          <Property Name="BookedDate" Type="date" />
         </EntityType>
         <EntityType Name="Rooms">
           <Key>
@@ -68,18 +69,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Invoices">
-          <End Role="Bookings" Type="Self.Bookings" Multiplicity="1" />
-          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bookings">
-              <PropertyRef Name="BookingID" />
-            </Principal>
-            <Dependent Role="Invoices">
-              <PropertyRef Name="BookingID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_RoomID">
           <End Role="Rooms" Type="Self.Rooms" Multiplicity="1" />
           <End Role="Bookings" Type="Self.Bookings" Multiplicity="*" />
@@ -105,10 +94,6 @@
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Bookings" EntitySet="Bookings" />
           </AssociationSet>
-          <AssociationSet Name="FK_Invoices" Association="Self.FK_Invoices">
-            <End Role="Bookings" EntitySet="Bookings" />
-            <End Role="Invoices" EntitySet="Invoices" />
-          </AssociationSet>
           <AssociationSet Name="FK_RoomID" Association="Self.FK_RoomID">
             <End Role="Rooms" EntitySet="Rooms" />
             <End Role="Bookings" EntitySet="Bookings" />
@@ -129,7 +114,6 @@
           <Property Name="DateEnd" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Invoices" Relationship="Self.FK_BookingID" FromRole="Bookings" ToRole="Invoices" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_Bookings" FromRole="Bookings" ToRole="Customers" />
-          <NavigationProperty Name="Invoices1" Relationship="Self.FK_Invoices" FromRole="Bookings" ToRole="Invoices" />
           <NavigationProperty Name="Room" Relationship="Self.FK_RoomID" FromRole="Bookings" ToRole="Rooms" />
           <Property Name="Guests" Type="Int32" />
         </EntityType>
@@ -152,7 +136,7 @@
           <Property Name="BookingID" Type="Int32" Nullable="false" />
           <Property Name="Complete" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Booking" Relationship="Self.FK_BookingID" FromRole="Invoices" ToRole="Bookings" />
-          <NavigationProperty Name="Booking1" Relationship="Self.FK_Invoices" FromRole="Invoices" ToRole="Bookings" />
+          <Property Name="BookedDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -267,6 +251,7 @@
           <EntitySetMapping Name="Invoices">
             <EntityTypeMapping TypeName="HotelCaliforniaModel.Invoice">
               <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="BookedDate" ColumnName="BookedDate" />
                 <ScalarProperty Name="InvoiceID" ColumnName="InvoiceID" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="Complete" ColumnName="Complete" />

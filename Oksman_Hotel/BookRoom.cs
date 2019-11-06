@@ -41,7 +41,6 @@ namespace Oksman_Hotel
 
             RoomBox.DataSource = AvailableRooms;
 
-
         }
 
         private void BookRoom_Load(object sender, EventArgs e)
@@ -67,6 +66,7 @@ namespace Oksman_Hotel
             var Customer = new SearchCustomer();
 
             var B = new Booking();
+            var Add = new AdjustData();
             B.RoomID = int.Parse(RoomBox.SelectedValue.ToString());
             var Objekt = Customer.FindACustomer(_ID);
   
@@ -75,7 +75,9 @@ namespace Oksman_Hotel
             B.DateEnd = DateTime2.Value;
             B.Guests = int.Parse(GuestsBox.SelectedValue.ToString());
 
-            B.BookARoom(B);
+            Add.BookARoom(B);
+            Add.CreateInvoice(B);
+            
             this.Close();
         }
 
@@ -99,21 +101,6 @@ namespace Oksman_Hotel
             BedsCount = RoomInfo.Beds;
             List<Beds> BedList = new List<Beds>();
             BedList = Data.GetBeds(RoomInfo.Beds);
-
-            //if (ExtraBedBox.Checked == true)
-            //{
-            //    var GetBeds = new Room();
-            //    BedList = GetBeds.GetBeds(BedsCount + 1);
-
-            //    GuestsBox.DisplayMember = "Number";
-            //    GuestsBox.ValueMember = "Number";
-            //    GuestsBox.DataSource = BedList;
-            //}
-            //else
-            //{
-            //    var GetBeds = new Room();
-            //    BedList = GetBeds.GetBeds(RoomInfo.Beds);
-            //}
 
             GuestsBox.DisplayMember = "Number";
             GuestsBox.ValueMember = "Number";

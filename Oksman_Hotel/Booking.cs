@@ -18,7 +18,6 @@ namespace Oksman_Hotel
         public Booking()
         {
             this.Invoices = new HashSet<Invoice>();
-            this.Invoices1 = new HashSet<Invoice>();
         }
     
         public int BookingID { get; set; }
@@ -31,21 +30,6 @@ namespace Oksman_Hotel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Invoice> Invoices { get; set; }
         public virtual Customer Customer { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Invoice> Invoices1 { get; set; }
         public virtual Room Room { get; set; }
-
-        public void BookARoom(Booking B)
-        {
-
-            using (var db = new HotelCaliforniaEntities())
-            {
-                db.Bookings.Add(B);
-                db.SaveChanges();
-            }
-
-        }
-
-
     }
 }

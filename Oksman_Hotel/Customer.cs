@@ -24,7 +24,7 @@ namespace Oksman_Hotel
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int PersonID { get; set; }
-        public string FullName { get; set; }
+        public string FullName { get { return $"{FirstName} {LastName}"; } set { } }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }

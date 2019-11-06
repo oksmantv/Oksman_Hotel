@@ -34,7 +34,7 @@
             this.BookingBox = new System.Windows.Forms.ListBox();
             this.CustomerText = new System.Windows.Forms.TextBox();
             this.PayBookingButton = new System.Windows.Forms.Button();
-            this.DeleteBookingButton = new System.Windows.Forms.Button();
+            this.ChangeBookingButton = new System.Windows.Forms.Button();
             this.BookRoom_Button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -100,17 +100,18 @@
             this.PayBookingButton.TabIndex = 6;
             this.PayBookingButton.Text = "Pay Booking";
             this.PayBookingButton.UseVisualStyleBackColor = true;
+            this.PayBookingButton.Click += new System.EventHandler(this.PayBookingButton_Click);
             // 
-            // DeleteBookingButton
+            // ChangeBookingButton
             // 
-            this.DeleteBookingButton.Location = new System.Drawing.Point(278, 296);
-            this.DeleteBookingButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.DeleteBookingButton.Name = "DeleteBookingButton";
-            this.DeleteBookingButton.Size = new System.Drawing.Size(137, 39);
-            this.DeleteBookingButton.TabIndex = 7;
-            this.DeleteBookingButton.Text = "Change Booking";
-            this.DeleteBookingButton.UseVisualStyleBackColor = true;
-            this.DeleteBookingButton.Click += new System.EventHandler(this.DeleteBookingButton_Click);
+            this.ChangeBookingButton.Location = new System.Drawing.Point(278, 296);
+            this.ChangeBookingButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChangeBookingButton.Name = "ChangeBookingButton";
+            this.ChangeBookingButton.Size = new System.Drawing.Size(137, 39);
+            this.ChangeBookingButton.TabIndex = 7;
+            this.ChangeBookingButton.Text = "Change Booking";
+            this.ChangeBookingButton.UseVisualStyleBackColor = true;
+            this.ChangeBookingButton.Click += new System.EventHandler(this.ChangeBookingButton_Click);
             // 
             // BookRoom_Button
             // 
@@ -149,7 +150,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BookRoom_Button);
-            this.Controls.Add(this.DeleteBookingButton);
+            this.Controls.Add(this.ChangeBookingButton);
             this.Controls.Add(this.PayBookingButton);
             this.Controls.Add(this.CustomerText);
             this.Controls.Add(this.BookingBox);
@@ -173,7 +174,7 @@
         private System.Windows.Forms.ListBox BookingBox;
         private System.Windows.Forms.TextBox CustomerText;
         private System.Windows.Forms.Button PayBookingButton;
-        private System.Windows.Forms.Button DeleteBookingButton;
+        private System.Windows.Forms.Button ChangeBookingButton;
         private System.Windows.Forms.Button BookRoom_Button;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
