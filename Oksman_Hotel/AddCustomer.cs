@@ -25,14 +25,22 @@ namespace Oksman_Hotel
         private void Button1_Click(object sender, EventArgs e)
         {
             var Customer = new Customer();
+            var Search = new SearchCustomer();
             Customer.FirstName = FirstNameBox.Text;
             Customer.LastName = LastNameBox.Text;
             Customer.PersonID = int.Parse(PersionIDBox.Text);
 
-            var Data = new AdjustData();
-            Data.AddCustomer(Customer);
+            if (Search.CheckPersonID(Customer))
+                MessageBox.Show("ID Already Exists");
+            else
+            {
+                var Data = new AdjustData();
+                Data.AddCustomer(Customer);
 
-            this.Close();
+                this.Close();
+
+            }
+
 
         }
     }

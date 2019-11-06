@@ -18,6 +18,8 @@ namespace Oksman_Hotel
         public int BookingID { get; set; }
         public int Complete { get; set; }
         public Nullable<System.DateTime> BookedDate { get; set; }
+
+        public decimal TotalPrice { get; set; }
     
         public virtual Booking Booking { get; set; }
     }

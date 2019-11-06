@@ -20,6 +20,30 @@ namespace Oksman_Hotel
             }
 
         }
+        public void ChangeCustomer(Customer C)
+        {
+            using (var Data = new HotelCaliforniaEntities())
+            {
+                var Item = Data.Customers.First(a => a.CustomerID == C.CustomerID);
+                Item.FirstName = C.FirstName;
+                Item.LastName = C.LastName;
+                Item.PersonID = C.PersonID;
+                Data.SaveChanges();
+
+            }
+
+        }
+        public void DeleteCustomer(Customer C)
+        {
+            using (var db = new HotelCaliforniaEntities())
+            {
+                var Item = db.Customers.SingleOrDefault(x => x.CustomerID == C.CustomerID);
+                db.Customers.Remove(Item);
+                db.SaveChanges();
+
+            }
+
+        }
         public void BookARoom(Booking B)
         {
 
@@ -46,17 +70,30 @@ namespace Oksman_Hotel
             {
                 var Item = db.Bookings.SingleOrDefault(x => x.BookingID == B.BookingID);
                 db.Bookings.Remove(Item);
-                db.SaveChanges();
-            }
 
+                var Invoice = db.Invoices.SingleOrDefault(x => x.BookingID == B.BookingID);
+
+                if(Invoice == null)
+                {
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Invoices.Remove(Invoice);
+                    db.SaveChanges();
+                }
+            }
         }
         public void CreateInvoice(Booking B)
         {
-            
+            var Get = new GetData();
+            Room R = Get.GetRoom(int.Parse(B.RoomID.ToString()));
+            decimal Price = decimal.Parse(((B.DateEnd - B.DateStart).TotalDays * R.Price).ToString());
             var I = new Invoice();
             I.BookingID = B.BookingID;
             I.Complete = 0;
             I.BookedDate = DateTime.Now;
+            I.TotalPrice = Price;
 
             using (var db = new HotelCaliforniaEntities())
             {

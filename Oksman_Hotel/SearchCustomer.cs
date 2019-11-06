@@ -12,19 +12,16 @@ namespace Oksman_Hotel
         public Customer FindACustomer(int id)
         {
             var C = new Customer();
-
             using (HotelCaliforniaEntities db = new HotelCaliforniaEntities())
             {
-                C = db.Customers.Where(x => x.CustomerID == id).FirstOrDefault();            
+                C = db.Customers.Where(x => x.CustomerID == id).FirstOrDefault();
             }
-
             return C;
         }
         public List<Customer> FindCustomer(string name)
         {
            using (HotelCaliforniaEntities db = new HotelCaliforniaEntities())
            {
-
                 List < Customer > Lista = new List<Customer>();
 
                 if (name.Length < 1)
@@ -37,13 +34,22 @@ namespace Oksman_Hotel
                              where c.FirstName.Contains(name)
                              select c).ToList();
                 }
-
                 return Lista;
-
-
             }
+        }
 
+        public bool CheckPersonID(Customer c)
+        {
+            var C = new List<Customer>();
+            using (HotelCaliforniaEntities db = new HotelCaliforniaEntities())
+            {
+                C = db.Customers.Where(x => x.PersonID == c.PersonID && x.CustomerID != c.CustomerID).ToList();
+            }
+            if (C.Count < 1)
+                return false;
+            else return true;
 
         }
+
     }
 }

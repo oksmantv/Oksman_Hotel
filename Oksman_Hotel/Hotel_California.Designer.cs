@@ -38,6 +38,8 @@
             this.BookRoom_Button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.ChangeCustomerButton = new System.Windows.Forms.Button();
+            this.DeleteCustomerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // SearchButton
@@ -53,10 +55,10 @@
             // 
             // AddCustomerButton
             // 
-            this.AddCustomerButton.Location = new System.Drawing.Point(36, 242);
+            this.AddCustomerButton.Location = new System.Drawing.Point(16, 242);
             this.AddCustomerButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.AddCustomerButton.Name = "AddCustomerButton";
-            this.AddCustomerButton.Size = new System.Drawing.Size(141, 39);
+            this.AddCustomerButton.Size = new System.Drawing.Size(125, 46);
             this.AddCustomerButton.TabIndex = 1;
             this.AddCustomerButton.Text = "Add Customer";
             this.AddCustomerButton.UseVisualStyleBackColor = true;
@@ -93,10 +95,10 @@
             // 
             // PayBookingButton
             // 
-            this.PayBookingButton.Location = new System.Drawing.Point(278, 242);
+            this.PayBookingButton.Location = new System.Drawing.Point(294, 242);
             this.PayBookingButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PayBookingButton.Name = "PayBookingButton";
-            this.PayBookingButton.Size = new System.Drawing.Size(137, 39);
+            this.PayBookingButton.Size = new System.Drawing.Size(121, 46);
             this.PayBookingButton.TabIndex = 6;
             this.PayBookingButton.Text = "Pay Booking";
             this.PayBookingButton.UseVisualStyleBackColor = true;
@@ -104,10 +106,10 @@
             // 
             // ChangeBookingButton
             // 
-            this.ChangeBookingButton.Location = new System.Drawing.Point(278, 296);
+            this.ChangeBookingButton.Location = new System.Drawing.Point(294, 296);
             this.ChangeBookingButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.ChangeBookingButton.Name = "ChangeBookingButton";
-            this.ChangeBookingButton.Size = new System.Drawing.Size(137, 39);
+            this.ChangeBookingButton.Size = new System.Drawing.Size(121, 46);
             this.ChangeBookingButton.TabIndex = 7;
             this.ChangeBookingButton.Text = "Change Booking";
             this.ChangeBookingButton.UseVisualStyleBackColor = true;
@@ -115,10 +117,10 @@
             // 
             // BookRoom_Button
             // 
-            this.BookRoom_Button.Location = new System.Drawing.Point(36, 296);
+            this.BookRoom_Button.Location = new System.Drawing.Point(16, 296);
             this.BookRoom_Button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BookRoom_Button.Name = "BookRoom_Button";
-            this.BookRoom_Button.Size = new System.Drawing.Size(141, 39);
+            this.BookRoom_Button.Size = new System.Drawing.Size(125, 46);
             this.BookRoom_Button.TabIndex = 8;
             this.BookRoom_Button.Text = "Book Room";
             this.BookRoom_Button.UseVisualStyleBackColor = true;
@@ -142,11 +144,35 @@
             this.label2.TabIndex = 10;
             this.label2.Text = "Customers:";
             // 
+            // ChangeCustomerButton
+            // 
+            this.ChangeCustomerButton.Location = new System.Drawing.Point(147, 242);
+            this.ChangeCustomerButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ChangeCustomerButton.Name = "ChangeCustomerButton";
+            this.ChangeCustomerButton.Size = new System.Drawing.Size(125, 46);
+            this.ChangeCustomerButton.TabIndex = 11;
+            this.ChangeCustomerButton.Text = "Change Customer";
+            this.ChangeCustomerButton.UseVisualStyleBackColor = true;
+            this.ChangeCustomerButton.Click += new System.EventHandler(this.ChangeCustomerButton_Click);
+            // 
+            // DeleteCustomerButton
+            // 
+            this.DeleteCustomerButton.Location = new System.Drawing.Point(147, 296);
+            this.DeleteCustomerButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.DeleteCustomerButton.Name = "DeleteCustomerButton";
+            this.DeleteCustomerButton.Size = new System.Drawing.Size(125, 46);
+            this.DeleteCustomerButton.TabIndex = 12;
+            this.DeleteCustomerButton.Text = "Delete Customer";
+            this.DeleteCustomerButton.UseVisualStyleBackColor = true;
+            this.DeleteCustomerButton.Click += new System.EventHandler(this.DeleteCustomerButton_Click);
+            // 
             // Hotel_California
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(470, 362);
+            this.Controls.Add(this.DeleteCustomerButton);
+            this.Controls.Add(this.ChangeCustomerButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.BookRoom_Button);
@@ -178,6 +204,8 @@
         private System.Windows.Forms.Button BookRoom_Button;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button ChangeCustomerButton;
+        private System.Windows.Forms.Button DeleteCustomerButton;
     }
 }
 

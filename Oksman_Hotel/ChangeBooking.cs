@@ -41,8 +41,17 @@ namespace Oksman_Hotel
             else if (RoomInfo.RoomType == "2")
                 RoomType.Text += "Double";
 
+            List<BookRoom.Beds> BedList = new List<BookRoom.Beds>();
             if (RoomInfo.RoomType == "2" && BookingInfo.Guests > 2)
+            {
+                BedList = Data.GetBeds(RoomInfo.Beds + 1);
                 ExtraBedBox.Checked = true;
+            }
+            else
+            {
+                BedList = Data.GetBeds(RoomInfo.Beds);
+            }
+                
 
             RoomPrice.Text += RoomInfo.Price;
             RoomSize.Text += RoomInfo.Size;
@@ -50,8 +59,7 @@ namespace Oksman_Hotel
             if (RoomInfo.Size < 35) ExtraBedBox.Enabled = false;
             else ExtraBedBox.Enabled = true;
             BedsCount = RoomInfo.Beds;
-            List<BookRoom.Beds> BedList = new List<BookRoom.Beds>();
-            BedList = Data.GetBeds(RoomInfo.Beds);
+
 
             GuestsBox.DisplayMember = "Number";
             GuestsBox.ValueMember = "Number";
@@ -70,7 +78,7 @@ namespace Oksman_Hotel
 
         private void SaveChangesButton_Click(object sender, EventArgs e)
         {
-            //var B = new Booking();
+
             var Get = new GetData();
             var Add = new AdjustData();
 
@@ -111,7 +119,6 @@ namespace Oksman_Hotel
                 this.Close();
 
             }
-
         }
     }
 }
